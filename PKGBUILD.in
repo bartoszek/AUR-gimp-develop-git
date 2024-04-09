@@ -108,4 +108,7 @@ package() {
   for icon in $(find "${pkgdir}"/usr/share/icons/ -type f); do
     mv "${icon}" "${icon%.*}-2.99.${icon##*.}"
   done
+
+  #fix metainfo
+  rm -rf "${pkgdir}"/usr/share/metainfo
 }
