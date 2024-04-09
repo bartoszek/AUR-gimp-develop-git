@@ -11,7 +11,7 @@ _fragment="${FRAGMENT:-#branch=master}"
 pkgname=gimp-develop-git
 _pkgname=${pkgname%-develop-git}
 epoch=1
-pkgver=2.99.19.r120.0f32312e26
+pkgver=2.99.19.r352.f346b1783b
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program (non-conflicting git version)"
 arch=('i686' 'x86_64')
