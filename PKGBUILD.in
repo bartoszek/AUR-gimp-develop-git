@@ -112,4 +112,11 @@ package() {
 
   #fix metainfo
   rm -rf "${pkgdir}"/usr/share/metainfo
+
+  #fix bins
+  rm "${pkgdir}"/usr/bin/gimp{,-console,tool} || true
+
+  #fix manpages
+  rm "${pkgdir}"/usr/share/man/man1/gimp{,-console,tool}.1 || true
+  rm "${pkgdir}"/usr/share/man/man5/gimprc.5 || true
 }
