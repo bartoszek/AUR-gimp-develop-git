@@ -11,7 +11,7 @@ _fragment="${FRAGMENT:-#branch=master}"
 pkgname=gimp-develop-git
 _pkgname=${pkgname%-develop-git}
 epoch=1
-pkgver=2.99.19.r1408.252d187dbc
+pkgver=3.0.0.RC1.r40.0cd0206917
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program (non-conflicting git version)"
 arch=('i686' 'x86_64')
@@ -33,8 +33,8 @@ depends=(
 	'poppler-data>=0.4.9'
 	'openexr>=1.6.1'
 	'mypaint-brushes1>=1.3.0'
-	'babl>=0.1.108'
-	'gegl>=0.4.49'
+	'babl>=0.1.110'
+	'gegl>=0.4.50'
 	'cairo>=1.14.0'
 	'appstream-glib>=0.7.7'
 	'gobject-introspection>=1.32.0'
@@ -72,7 +72,7 @@ sha512sums=('SKIP'
 pkgver() {
 # shellcheck disable=SC2183,SC2046
   printf "%s.r%s.%s" \
-    $(grep -zoP "(?s)^project\(.*?version: '\K[0-9.]+(?=\'.*?\))" ${_pkgname}/meson.build|tr -d '\0') \
+    $(grep -zoP "(?s)^project\(.*?version: '\K.*?(?=(\+git)?',)" ${_pkgname}/meson.build|sed 's/-/./g'|tr -d '\0') \
     "$(git -C $_pkgname rev-list "$(git -C $_pkgname describe --abbrev=0)"..HEAD --count)" \
     "$(git -C $_pkgname log --pretty=format:'%h' -n 1)"
 }
