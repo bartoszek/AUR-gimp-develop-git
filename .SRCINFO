@@ -32,6 +32,7 @@ pkgbase = gimp-develop-git
 	makedepends = meson
 	makedepends = xorg-server-xvfb
 	makedepends = glib2-devel
+	depends = libxmu
 	depends = lcms2>=2.8
 	depends = libwmf>=0.2.8
 	depends = icu
