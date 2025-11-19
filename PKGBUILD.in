@@ -101,25 +101,26 @@ check() {
 }
 
 package() {
+  _suffix=$(grep -oP '^\d\.\d'<<<"$pkgver")
   DESTDIR="${pkgdir}" ninja -C "${srcdir}/build" install
-  install -Dm 644 "${srcdir}/linux.gpl" "${pkgdir}/usr/share/gimp/2.99/palettes/Linux.gpl"
+  install -Dm 644 "${srcdir}/linux.gpl" "${pkgdir}/usr/share/gimp/${_suffix}/palettes/Linux.gpl"
 
   #fix gimp.desktop
-  mv "${pkgdir}"/usr/share/applications/gimp.desktop "${pkgdir}"/usr/share/applications/gimp-2.99.desktop
-  sed -i 's/Icon=gimp/&-2.99/' "${pkgdir}"/usr/share/applications/gimp-2.99.desktop
+  mv "${pkgdir}"/usr/share/applications/gimp.desktop "${pkgdir}"/usr/share/applications/gimp-${_suffix}.desktop
+  sed -i "s/Icon=gimp/&-${_suffix}/" "${pkgdir}"/usr/share/applications/gimp-${_suffix}.desktop
 
   #fix icons
   for icon in $(find "${pkgdir}"/usr/share/icons/ -type f); do
-    mv "${icon}" "${icon%.*}-2.99.${icon##*.}"
+    mv "${icon}" "${icon%.*}-${_suffix}.${icon##*.}"
   done
 
   #fix metainfo
   rm -rf "${pkgdir}"/usr/share/metainfo
 
   #fix bins
-  rm "${pkgdir}"/usr/bin/gimp{,-console,tool} || true
+  rm "${pkgdir}"/usr/bin/gimp{,-console,tool,-test-clipboard}{,-${_suffix::1}} || true
 
   #fix manpages
-  rm "${pkgdir}"/usr/share/man/man1/gimp{,-console,tool}.1 || true
-  rm "${pkgdir}"/usr/share/man/man5/gimprc.5 || true
+  rm "${pkgdir}"/usr/share/man/man1/gimp{,-console,tool}{,-${_suffix::1}}.1 || true
+  rm "${pkgdir}"/usr/share/man/man5/gimprc{,-${_suffix::1}}.5 || true
 }
