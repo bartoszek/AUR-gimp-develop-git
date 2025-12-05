@@ -11,7 +11,7 @@ _fragment="${FRAGMENT:-#branch=master}"
 pkgname=gimp-develop-git
 _pkgname=${pkgname%-develop-git}
 epoch=1
-pkgver=3.2.0.RC1.r22.4a648b6639
+pkgver=3.2.0.RC1.r120.ff8f06c17d
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program (non-conflicting git version)"
 arch=('i686' 'x86_64')
@@ -33,7 +33,8 @@ depends=(
 	'poppler-glib>=0.69.0'
 	'poppler-data>=0.4.9'
 	'openexr>=1.6.1'
-	'mypaint-brushes>=1.5.0'
+	'libmypaint>=1.5.0'
+	'mypaint-brushes>=2.0'
 	'babl>=0.1.116'
 	'gegl>=0.4.64'
 	'cairo>=1.14.0'
@@ -44,7 +45,7 @@ makedepends+=('git' 'intltool>=0.40.1'
              'alsa-lib>=1.0.0' 'libxslt' 'glib-networking'
              'alsa-lib' 'curl' 'ghostscript' 'libxpm' 'webkit2gtk'
              'libheif' 'libwebp' 'libmng' 'iso-codes' 'aalib' 'zlib'
-             'gjs' 'python-gobject' 'python-packaging' 'luajit' 'meson' 'xorg-server-xvfb'
+             'gjs' 'python-gobject' 'python-packaging' 'luajit' 'meson'
              'glib2-devel'
              'libbacktrace' 'gi-docgen' 'cfitsio'
              )
